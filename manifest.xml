@@ -4,8 +4,8 @@
   <Version>1.0.0.0</Version>
   <ProviderName>Joe Martella</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Repo Stats"/>
-  <Description DefaultValue="This Add-in scans your emails for links to GitHub repositories and displays information about ones it finds."/>
+  <DisplayName DefaultValue="Repo Report"/>
+  <Description DefaultValue="Repo Report scans your emails for links to GitHub repositories and displays information about ones it finds."/>
   <!--<HighResolutionIconUrl DefaultValue="[Icon URL]"/>
   <SupportUrl DefaultValue="[Support URL]"/>-->
   <Hosts>
@@ -26,10 +26,11 @@
   </FormSettings>
   <Permissions>ReadWriteItem</Permissions>
   <Rule xsi:type="RuleCollection" Mode="Or">
-    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
-    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit"/>
+    <Rule xsi:type="ItemHasRegularExpressionMatch" 
+          PropertyName="BodyAsHTML" 
+          RegExName="GitHubUrl" 
+          RegExValue="github.com/[a-zA-Z0-9-._]*/[a-zA-Z0-9-._]*"/>
     <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Read"/>
-    <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Edit"/>
   </Rule>
   <DisableEntityHighlighting>false</DisableEntityHighlighting>
 </OfficeApp>
